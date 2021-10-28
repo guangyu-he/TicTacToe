@@ -8,7 +8,9 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 // 设置编码，防止中文乱码
 mysqli_query($conn , "set names utf8");
 
-$sql = "SELECT * FROM users";
+$id = $_GET['id'];
+
+$sql = "SELECT * FROM records";
 
 mysqli_select_db( $conn, $dbname );
 $retval = mysqli_query( $conn, $sql );
@@ -17,12 +19,16 @@ if (mysqli_num_rows($retval) > 0) {
   // 输出数据
   while($row = mysqli_fetch_assoc($retval)) {
       echo "" .$row["id"]. ",";
-      echo "" .$row["name"]. ",";
-      echo "" .$row["password"]. ",";
-      echo "" .$row["pass_q"]. ",";
-      echo "" .$row["pass_a"]. ",";
-      echo "" .$row["game_times_nr"]. ",";
-      echo "" .$row["game_records"]. "<br>";
+      echo "" .$row["win"]. ",";
+      echo "" .$row["first"]. ",";
+      echo "" .$row["second"]. ",";
+      echo "" .$row["third"]. ",";
+      echo "" .$row["forth"]. ",";
+      echo "" .$row["fifth"]. ",";
+      echo "" .$row["sixth"]. ",";
+      echo "" .$row["seventh"]. ",";
+      echo "" .$row["eighth"]. ",";
+      echo "" .$row["ninth"]. "<br>";
   }
 } else {
   echo "";

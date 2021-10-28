@@ -13,13 +13,18 @@ else
   echo '连接成功<br />';
 }
 
-$sql = "CREATE TABLE users( ".
+$sql = "CREATE TABLE records( ".
         "id VARCHAR(20) NOT NULL, ".
-        "name VARCHAR(20) NOT NULL, ".
-        "password VARCHAR(20) NOT NULL, ".
-        "pass_q VARCHAR(100) NOT NULL, ".
-        "pass_a VARCHAR(100) NOT NULL, ".
-        "submission_date DATETIME, ".
+        "win BIT NOT NULL, ".
+        "first VARCHAR(2) NOT NULL, ".
+        "second VARCHAR(2) NOT NULL, ".
+        "third VARCHAR(2) NOT NULL, ".
+        "forth VARCHAR(2) NOT NULL, ".
+        "fifth VARCHAR(2) NOT NULL, ".
+        "sixth VARCHAR(2) NOT NULL, ".
+        "seventh VARCHAR(2) NOT NULL, ".
+        "eighth VARCHAR(2) NOT NULL, ".
+        "ninth VARCHAR(2) NOT NULL, ".
         "updated_date DATETIME, ".
         "PRIMARY KEY ( id ))ENGINE=InnoDB DEFAULT CHARSET=utf8; ";
         
