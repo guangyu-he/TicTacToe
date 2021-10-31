@@ -26,7 +26,7 @@ $eighth = $_GET['eighth'];
 $ninth = $_GET['ninth'];
 $updated_date = date('Y-m-d H:i:s');
 
-$id = $first.$second.$third.$forth.$fifth.$sixth.$seventh.$eighth.$ninth;
+$id = $first.'-'.$second.'-'.$third.'-'.$forth.'-'.$fifth.'-'.$sixth.'-'.$seventh.'-'.$eighth.'-'.$ninth;
  
 $sql = "INSERT INTO records ".
         "(id, win, first, second, third, forth, fifth, sixth, seventh, eighth, ninth, updated_date) ".

@@ -1,6 +1,6 @@
 <?php
 $dbhost = 'localhost';  // mysql服务器主机地址
-$dbuser = 'root';            // mysql用户名
+$dbuser = 'test';            // mysql用户名
 $dbpass = '0';          // mysql用户名密码
 $dbname = 'my_db';          // mysql用户名密码
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
@@ -27,10 +27,8 @@ if (mysqli_num_rows($retval) > 0) {
       echo "" .$row["seventh"]. ",";
       echo "" .$row["eighth"]. ",";
       echo "" .$row["ninth"]. "<br>";
-  }
-} else {
-  echo "";
-}
+  };
+};
 
 mysqli_close($conn);
 ?>
