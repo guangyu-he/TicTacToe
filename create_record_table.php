@@ -1,21 +1,21 @@
 <?php
 $dbhost = 'localhost';  // mysql服务器主机地址
-$dbuser = 'root';            // mysql用户名
+$dbuser = 'test';            // mysql用户名
 $dbpass = '0';          // mysql用户名密码
 $dbname = 'my_db';          // mysql用户名密码
+
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-if(! $conn )
-{
-    die('连接失败: ' . mysqli_error($conn));
+
+// 检测连接
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
 }
-else
-{
-  echo '连接成功<br />';
-}
+echo "连接成功<br>";
+
 
 $sql = "CREATE TABLE records( ".
         "id VARCHAR(20) NOT NULL, ".
-        "win BIT NOT NULL, ".
+        "win VARCHAR(1) NOT NULL, ".
         "first VARCHAR(2) NOT NULL, ".
         "second VARCHAR(2) NOT NULL, ".
         "third VARCHAR(2) NOT NULL, ".

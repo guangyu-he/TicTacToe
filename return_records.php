@@ -8,8 +8,6 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 // 设置编码，防止中文乱码
 mysqli_query($conn , "set names utf8");
 
-$id = $_GET['id'];
-
 $sql = "SELECT * FROM records";
 
 mysqli_select_db( $conn, $dbname );
