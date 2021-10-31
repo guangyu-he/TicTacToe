@@ -12,8 +12,7 @@ var user = {
   updated_date: null
 }; 
 
-//SECTION update user data in sql
-function update_user(){
+function update_user(){ //SECTION update user data in sql
     var url_upload = "update_user.php?id="+user.uid+"&n="+user.name+"&p="+user.pass+"&pq="+user.pass_q+"&pa="+user.pass_a;
     $.ajax({
       url: url_upload,
@@ -24,11 +23,9 @@ function update_user(){
         console.log(err);
       }     
     });
-}
-//!SECTION
+}//!SECTION
 
-//SECTION return user data from sql
-function return_user(){
+function return_user(){ //SECTION return user data from sql
     var data_from_php = $.ajax(
       {
         url: 'return_user.php?id='+user.uid,
@@ -52,6 +49,5 @@ function return_user(){
       user.updated_date = data_in_array[5];
       return false;
     }
-}
-//!SECTION
+} //!SECTION
 

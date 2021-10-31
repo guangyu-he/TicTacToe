@@ -1,13 +1,15 @@
 //ANCHOR record related functions
 
 //REVIEW global variables: all positions records
-var records = return_records();
+var all_records = return_records();
+//REVIEW global variables: single game positions
+//STUB onetime_record = [win, first, second, ..., ninth];
+var onetime_record = [];
 
-//SECTION return records from sql
-function return_records(){
+function return_records(){ //SECTION return records from sql
     var data_from_php = $.ajax(
     {
-        url: 'return_user.php?id='+user.uid,
+        url: 'return_records.php?id='+user.uid,
         success: function (data) {},
         dataType: "text",
         async: false,
@@ -26,5 +28,17 @@ function return_records(){
         }
         return data_in_array;
     }
-}
-//!SECTION
+} //!SECTION
+
+function add_record(onetime_record){ //SECTION add one record to sql
+    var url_upload = "add_record.php?win="+onetime_record[0]+"&first="+onetime_record[1]+"&second="+onetime_record[2]+"&third="+onetime_record[3]+"&fourth="+onetime_record[4]+"&fifth="+onetime_record[5]+"&sixth="+onetime_record[6]+"&seventh="+onetime_record[7]+"&eighth="+onetime_record[8]+"&ninth="+onetime_record[9];
+    $.ajax({
+      url: url_upload,
+      success: function (data) {
+        //STUB console.log(data);
+      },
+      error: function (err) {
+        console.log(err);
+      }     
+    });
+}//!SECTION

@@ -8,7 +8,6 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 // 设置编码，防止中文乱码
 mysqli_query($conn , "set names utf8");
 
-$id = uniqid();
 $win = $_GET['w'];
 $first = $_GET['first'];
 $second = $_GET['second'];
@@ -20,6 +19,8 @@ $seventh = $_GET['seventh'];
 $eighth = $_GET['eighth'];
 $ninth = $_GET['ninth'];
 $updated_date = date('Y-m-d H:i:s');
+
+$id = $first.$second.$third.$forth.$fifth.$sixth.$seventh.$eighth.$ninth;
  
 $sql = "INSERT INTO records ".
         "(id, win, first, second, third, forth, fifth, sixth, seventh, eighth, ninth, updated_date) ".
