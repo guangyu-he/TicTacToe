@@ -3,7 +3,7 @@
     <title>Tic-Tac-Toe</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style type="text/css">
     table tr td{
@@ -11,10 +11,8 @@
         border: 1px solid red;
     }
 </style>
-<body onload="onload()">
+<body>
     <h1>Tic-Tac-Toe</h1>
-    <input type="button" id="aiswitch" value="ai off" style="display: block;" onclick="aiswitch_function()">
-    <input type="button" id="manual_win" value="manual win" style="display: block;" onclick="winloss()">
 
     <table >
         <tr>
@@ -33,199 +31,11 @@
             <td><img id="t9" src="b.png" onclick="press(9)"></td>
         </tr>
     </table>
-    <input type="button" id="clear" value="clear storage" style="display: none;" onclick="clear_function()">
-    <input type="button" id="restart" value="restart" style="display: none;" onclick="restart_function()">
 
 </body>
 
-<script>
-    var localStorage = window.localStorage;
-    var times;
-    var result_full = new Array();
-    var result = new Array(10);
-    var result_winlose = new Array(10);
-    var player = "x";
-    var table_id = "";
-    var endstate = false;
-    var order = 1;
-    var ai_state = false;
-    function press(id){
-        document.getElementById("restart").style = "display: none";
-        document.getElementById("clear").style = "display: none";
-
-        table_id = "t" + String(id);
-        if(result[id] != null || endstate){
-            return false;
-        }else{}
-        result[id] = String(order) + player;
-        if(player == "x"){
-            document.getElementById(table_id).src = "x.png";
-        }else{
-            document.getElementById(table_id).src = "o.png";
-        }
-        order++;
-        if(ai_state){
-            ai(id);
-            winloss();
-            player = "x";
-            order++;
-            if(ai_state){}
-            else{
-                player = "o";
-                order--;
-            }
-            return false;
-        }else{
-            winloss();
-            if(player == "x"){
-                player = "o";
-            }else{
-                player = "x";
-            }
-            return false;
-        }
-    }
-
-    function winloss(){
-        for(var i=1;i<result.length;i++){
-            if(result[i]==null){}
-            else{
-                result_winlose[i] = result[i].match(/[a-zA-Z]+|[0-9]+/g)[1];
-            }
-        }
-        if(result_winlose[1] == "x" && result_winlose[1] == result_winlose[2] && result_winlose[1] == result_winlose[3]){
-            alert("x"+ " win");
-            endgame("x");
-        }else if(result_winlose[1] == "x" && result_winlose[1] == result_winlose[4] && result_winlose[1] == result_winlose[7]){
-            alert("x"+ " win");
-            endgame("x");
-        }else if(result_winlose[1] == "x" && result_winlose[1] == result_winlose[5] && result_winlose[1] == result_winlose[9]){
-            alert("x"+ " win");
-            endgame("x");
-        }else if(result_winlose[2] == "x" && result_winlose[2] == result_winlose[5] && result_winlose[2] == result_winlose[8]){
-            alert("x"+ " win");
-            endgame("x");
-        }else if(result_winlose[3] == "x" && result_winlose[3] == result_winlose[6] && result_winlose[3] == result_winlose[9]){
-            alert("x"+ " win");
-            endgame("x");
-        }else if(result_winlose[3] == "x" && result_winlose[3] == result_winlose[5] && result_winlose[3] == result_winlose[7]){
-            alert("x"+ " win");
-            endgame("x");
-        }else if(result_winlose[4] == "x" && result_winlose[4] == result_winlose[5] && result_winlose[4] == result_winlose[6]){
-            alert("x"+ " win");
-            endgame("x");
-        }else if(result_winlose[7] == "x" && result_winlose[7] == result_winlose[8] && result_winlose[7] == result_winlose[9]){
-            alert("x"+ " win");
-            endgame("x");
-        }else if(result_winlose[1] == "o" && result_winlose[1] == result_winlose[2] && result_winlose[1] == result_winlose[3]){
-            alert("o"+ " win");
-            endgame("o");
-        }else if(result_winlose[1] == "o" && result_winlose[1] == result_winlose[4] && result_winlose[1] == result_winlose[7]){
-            alert("o"+ " win");
-            endgame("o");
-        }else if(result_winlose[1] == "o" && result_winlose[1] == result_winlose[5] && result_winlose[1] == result_winlose[9]){
-            alert("o"+ " win");
-            endgame("o");
-        }else if(result_winlose[2] == "o" && result_winlose[2] == result_winlose[5] && result_winlose[2] == result_winlose[8]){
-            alert("o"+ " win");
-            endgame("o");
-        }else if(result_winlose[3] == "o" && result_winlose[3] == result_winlose[6] && result_winlose[3] == result_winlose[9]){
-            alert("o"+ " win");
-            endgame("o");
-        }else if(result_winlose[3] == "o" && result_winlose[3] == result_winlose[5] && result_winlose[3] == result_winlose[7]){
-            alert("o"+ " win");
-            endgame("o");
-        }else if(result_winlose[4] == "o" && result_winlose[4] == result_winlose[5] && result_winlose[4] == result_winlose[6]){
-            alert("o"+ " win");
-            endgame("o");
-        }else if(result_winlose[7] == "o" && result_winlose[7] == result_winlose[8] && result_winlose[7] == result_winlose[9]){
-            alert("o"+ " win");
-            endgame("o");
-        }else if(return_endturn()){
-            alert("draw");
-            endgame("d");
-        }
-        else{}
-    }
-
-    function return_endturn(){
-        for(var i=1;i<result.length;i++){
-            if(result[i] == null){
-                return false;
-            }else{}
-        }
-        return true;
-    }
-
-    function endgame(player){
-        document.getElementById("restart").style = "display: block";
-        endstate = true;
-        result[0] = player;
-        for(var i=0;i<10;i++){
-            if(result[i]==null){
-                result[i] = "";
-            }else{}
-        }
-        for(var i=0;i<result_full.length;i++){
-            var cc = 0;
-            for(var j=0;j<result.length;j++){
-                if(result_full[i][j] == result[j]){
-                    cc++;
-                }else{}
-                if(cc==9){
-                    return false;
-                }else{}
-            }
-        }
-        for(var i=0;i<result_full.length;i++){
-            for(var j=i+1;j<result_full.length;j++){
-                if(result[i] == result[j]){
-                    return false;
-                }else{}
-            }
-        }
-        result_full[times] = result;
-        times++;
-        localStorage.setItem("result_full", result_full);
-        localStorage.setItem("times", times);
-        var result_full_php = localStorage.getItem("result_full");
-        updateuser("test",times,result_full_php);
-        setTimeout(function(){},50);
-    }
-
-    function onload(){
-        returnuser("test");//localStorage.getItem("result_full");
-        setTimeout(function(){
-            console.log(sql_return);
-            result_full_local = sql_return.split("|");
-            if(result_full_local[0] == "" || result_full_local[0] == null){
-                times = 0;
-            }else{
-                document.getElementById("clear").style = "display: block";
-                var result_full_array = result_full_local[1].split(",");
-                var result_full_temp = new Array();
-                var j = 0;
-                for(var i=0;i<result_full_array.length / 10;i++){
-                    result_full[i] = result_full_array.slice(j,j+10);
-                    j = j + 10;
-                }
-                console.log(result_full);
-                times = parseInt(result_full_local[0]);//parseInt(localStorage.getItem("times"));
-            }
-        },50);
-    }
-
-    function clear_function(){
-        localStorage.clear();
-        location.reload();
-    }
-
-    function restart_function(){
-        location.reload();
-    }
-</script>
-
-<script src="ai.js"></script>
-<script src="user.js"></script>
+<script src="variables.js"></script>
+<script src="game.js"></script>
+<script src="record.js"></script>
 
 </html>
