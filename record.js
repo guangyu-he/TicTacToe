@@ -22,7 +22,7 @@ function return_records(){ //SECTION return records from sql
     }else{
         var data_in_list =  data_from_php.split('<br>');
         var data_in_array = [];
-        for(var i=0; i<data_in_list.length; i++){
+        for(var i=0; i<data_in_list.length - 1; i++){
             data_in_array[i] = data_in_list[i].split(',');
         };
         return data_in_array;
@@ -34,7 +34,7 @@ function add_record(onetime_record){ //SECTION add one record to sql
     $.ajax({
       url: url_upload,
       success: function (data) {
-        console.log(data);
+        //STUB console.log(data);
       },
       error: function (err) {
         console.log(err);

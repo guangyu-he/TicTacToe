@@ -11,7 +11,7 @@
         border: 1px solid red;
     }
 </style>
-<body>
+<body onload="onload()">
     <h1>Tic-Tac-Toe</h1>
 
     <table >
@@ -37,5 +37,13 @@
 <script src="variables.js"></script>
 <script src="game.js"></script>
 <script src="record.js"></script>
+<script src="ai.js"></script>
+
+<script>
+    function onload() {
+        online_game_record = return_records();
+        console.log(online_game_record);
+    }
+</script>
 
 </html>

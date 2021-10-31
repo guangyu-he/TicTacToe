@@ -6,7 +6,7 @@ function press(id){ //SECTION events after press the box
     }else{};
 
     table_id = "t" + String(id);
-    single_game_record[id] = String(id) + player_turn;
+    single_game_record[id] = turn + player_turn;
     if(player_turn == "x"){
         document.getElementById(table_id).src = "x.png";
         single_game_plate[id] = "x";
@@ -27,8 +27,9 @@ function press(id){ //SECTION events after press the box
                 single_game_record[i] = 0;
             }else{};
         };
-        console.log(single_game_record);
+        //STUB console.log(single_game_record);
         add_record(single_game_record);
+        location.reload();
     }else{
         turn++;
     };
