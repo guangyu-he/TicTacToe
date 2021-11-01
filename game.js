@@ -12,15 +12,13 @@ function press(id){ //SECTION events after press the box
         single_game_plate[id] = "x";
 
         var ai_id = ai(id,turn);
-        console.log(ai_id);
-        console.log("---------");
+        //STUB console.log(ai_id);
         if(ai_id != 0){
             table_id = "t" + String(ai_id);
             document.getElementById(table_id).src = "o.png";
             single_game_plate[ai_id] = "o";
             turn++;
             single_game_record[ai_id] = turn + "o";
-            console.log(turn);
         }
         else{
             player_turn = "o";
