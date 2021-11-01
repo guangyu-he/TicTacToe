@@ -43,6 +43,34 @@
     function onload() {
         online_game_record = return_records();
         console.log(online_game_record);
+
+        var record_o_index=0;
+        for(var i=0;i<online_game_record.length;i++) {
+            if(online_game_record[i][1] == "o"){
+                online_game_record_o[record_o_index] = online_game_record[i][0].split("-");
+                record_o_index++;
+            };
+        }
+        console.log(online_game_record_o);
+
+        var record_w_index=0;
+        for(var i=0;i<online_game_record.length;i++) {
+            if(online_game_record[i][1] == "w"){
+                online_game_record_w[record_w_index] = online_game_record[i][0].split("-");
+                record_w_index++;
+            };
+        }
+        console.log(online_game_record_w);
+
+        var record_d_index=0;
+        for(var i=0;i<online_game_record.length;i++) {
+            if(online_game_record[i][1] == "d"){
+                online_game_record_d[record_d_index] = online_game_record[i][0].split("-");
+                record_d_index++;
+            };
+        }
+        console.log(online_game_record_d);
+
     }
 </script>
 

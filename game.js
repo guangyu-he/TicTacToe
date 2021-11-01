@@ -10,13 +10,29 @@ function press(id){ //SECTION events after press the box
     if(player_turn == "x"){
         document.getElementById(table_id).src = "x.png";
         single_game_plate[id] = "x";
-        player_turn = "o";
+
+        var ai_id = ai(id,turn);
+        console.log(ai_id);
+        console.log("---------");
+        if(ai_id != 0){
+            table_id = "t" + String(ai_id);
+            document.getElementById(table_id).src = "o.png";
+            single_game_plate[ai_id] = "o";
+            turn++;
+            single_game_record[ai_id] = turn + "o";
+            console.log(turn);
+        }
+        else{
+            player_turn = "o";
+        }
     }
     else if(player_turn == "o"){
         document.getElementById(table_id).src = "o.png";
         single_game_plate[id] = "o";
+
         player_turn = "x";
     }else{};
+
 
     single_game_record[0] = winloss();
     if(single_game_record[0] != null){
