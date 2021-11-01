@@ -37,6 +37,14 @@ function ai(id,turn){
 
         var returning_id;
         var pos_array = [[1,2,3],[1,4,7],[1,5,9],[2,5,8],[3,5,7],[3,6,9],[4,5,6],[7,8,9]];
+        //ANCHOR o advantage to check if there is any possibility to win
+        for(i=0;i<pos_array.length;i++){
+            returning_id = return_a_id_o(pos_array[i][0],pos_array[i][1],pos_array[i][2]);
+            if(returning_id!=0){
+                return returning_id;
+            }
+        }
+        //ANCHOR if not try defense/general ai strategy 
         for(i=0;i<pos_array.length;i++){
             returning_id = return_a_id(pos_array[i][0],pos_array[i][1],pos_array[i][2]);
             if(returning_id!=0){
@@ -58,6 +66,19 @@ function ai(id,turn){
         
         return 0;
     }
+}
+
+function return_a_id_o(id_1,id_2,id_3){
+    if(single_game_plate[id_1] == single_game_plate[id_2] && single_game_plate[id_3]==null && single_game_plate[id_1] == "o")
+    {
+        return id_3;
+    }else if(single_game_plate[id_1] == single_game_plate[id_3] && single_game_plate[id_2]==null && single_game_plate[id_1] == "o"){
+        return id_2;
+    }else if(single_game_plate[id_2] == single_game_plate[id_3] && single_game_plate[id_1]==null && single_game_plate[id_2] == "o"){
+        return id_1;
+    }else{
+        return 0;
+    };
 }
 
 function return_a_id(id_1,id_2,id_3){
