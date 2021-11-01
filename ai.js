@@ -1,4 +1,7 @@
 function ai(id,turn){
+    if(turn == 9){
+        return 0;
+    }
     //STUB console.log(id,turn);
     //STUB console.log(single_game_record[id]);
     //NOTE ai for o
@@ -27,11 +30,47 @@ function ai(id,turn){
             }
         }
     }catch(e){
+
+        if(single_game_plate[5]==null){
+            return 5;
+        }
+
+        var returning_id;
+        var pos_array = [[1,2,3],[1,4,7],[1,5,9],[2,5,8],[3,5,7],[3,6,9],[4,5,6],[7,8,9]];
+        for(i=0;i<pos_array.length;i++){
+            returning_id = return_a_id(pos_array[i][0],pos_array[i][1],pos_array[i][2]);
+            if(returning_id!=0){
+                return returning_id;
+            }
+        }
+
+        var empty_plate = new Array();
+        var empty_plate_index = 0;
+        for(i=1;i<single_game_plate.length;i++){
+            if(single_game_plate[i] == null){
+                empty_plate[empty_plate_index] = i;
+                empty_plate_index++;
+            }else{};
+        }
+
+        return empty_plate[randomNum(0,empty_plate.length-1)];
+        
+        
         return 0;
     }
-    
+}
 
-
+function return_a_id(id_1,id_2,id_3){
+    if(single_game_plate[id_1] == single_game_plate[id_2] && single_game_plate[id_3]==null && single_game_plate[id_1]!= null)
+    {
+        return id_3;
+    }else if(single_game_plate[id_1] == single_game_plate[id_3] && single_game_plate[id_2]==null && single_game_plate[id_1]!= null){
+        return id_2;
+    }else if(single_game_plate[id_2] == single_game_plate[id_3] && single_game_plate[id_1]==null && single_game_plate[id_2]!= null){
+        return id_1;
+    }else{
+        return 0;
+    };
 }
 
 function randomNum(minNum, maxNum) {
